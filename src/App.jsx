@@ -1,26 +1,35 @@
 import PlayButton from "./Components/PlayButton";
-import NumberPicker from "./Components/NumberPicker";
-import styled from "styled-components"
+import styled from "styled-components";
+import { useState } from "react";
+import GamePlay from "./Components/GamePlay";
 function App() {
+	const [isGameStarted, setIsGameStarted] = useState(false);
 
-	return <>
-	<Wrapper>
-		<PlayButton/>
-		<NumberPicker/>
-	</Wrapper>
-		
-	</>;
+	const toggle = () => {
+		setIsGameStarted((prev) => !prev);
+	};
+
+	return (
+		<>
+			<Wrapper>
+				{isGameStarted ? (
+					<GamePlay />
+				) : (
+					<PlayButton handleClick={toggle} />
+				)}
+			</Wrapper>
+		</>
+	);
 }
 
 export default App;
 
 const Wrapper = styled.main`
-	@import url('https://fonts.googleapis.com/css2?family=Lato&family=Mukta&family=MuseoModerno:ital@1&family=Open+Sans&family=Rubik+Iso&display=swap');
+	@import url("https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap");
 	padding: 0;
-	margin:0;
-	border:1px solid green;
-	height:100vh;
-	background-color:white;
-	font-family: 'Rubik Iso', cursive;
-`
-
+	margin: 0 auto;
+	height: 100vh;
+	background-color: white;
+	font-family: "Lato", sans-serif;
+	max-width: 1280px;
+`;
